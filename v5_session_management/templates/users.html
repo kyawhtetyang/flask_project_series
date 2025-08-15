@@ -1,0 +1,17 @@
+# templates/users.html
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<h1>Users</h1>
+<table border="1" cellpadding="5">
+    <tr><th>Username</th><th>Age</th></tr>
+    {% for username, user in users.items() %}
+    <tr>
+        <td>{{ username }}</td>
+        <td>{{ user["age"] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p><a href="{{ url_for('create_user_form') }}">Create User</a></p>
+<p><a href="{{ url_for('auth.login') }}">Login</a></p>  <!-- ⬅ FIX changed from url_for('login') -->
+{% endblock %}

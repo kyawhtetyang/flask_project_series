@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Edit User{% endblock %}
+{% block content %}
+<h1>Edit User: {{ user['username'] }}</h1>
+<form method="POST" enctype="multipart/form-data">
+    Age: <input type="number" name="age" value="{{ user['age'] }}" required><br/>
+    Password: <input type="password" name="password" placeholder="Leave blank to keep current"><br/>
+    Confirm Password: <input type="password" name="password_confirm" placeholder="Leave blank to keep current"><br/>
+    Email: <input type="email" name="email" value="{{ user['email'] }}"><br/>
+    Bio: <textarea name="bio">{{ user['bio'] }}</textarea><br/>
+    Profile Picture: <input type="file" name="profile_pic" accept="image/*"><br/>
+    {% if user['profile_pic'] %}
+        <img src="{{ url_for('static', filename='uploads/' + user['profile_pic']) }}" width="150"><br/>
+    {% endif %}
+    <button type="submit">Update</button>
+</form>
+<p><a href="{{ url_for('users.users_html') }}">Back to Users List</a></p>
+{% endblock %}

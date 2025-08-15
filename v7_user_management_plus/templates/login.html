@@ -1,0 +1,28 @@
+# templates/login.html
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+
+<form method="POST" action="{{ url_for('auth.login') }}">
+    <label>Username:</label>
+    <input type="text" name="username" required><br/><br/>
+
+    <label>Password:</label>
+    <input type="password" name="password" required><br/><br/>
+
+    <label>
+        <input type="checkbox" name="remember"> Remember Me
+    </label><br/><br/>
+
+    <button type="submit">Login</button>
+</form>
+
+<p>
+    {% if session.get('role') == 'admin' %}
+    <a href="{{ url_for('users.create_user_form') }}">Create User</a> |
+    {% endif %}
+    <a href="{{ url_for('users.users_html') }}">Users List</a>
+</p>
+{% endblock %}

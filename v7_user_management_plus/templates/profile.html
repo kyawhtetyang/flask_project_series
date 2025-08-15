@@ -1,0 +1,14 @@
+# templates/profile.html
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h1>{{ user['username'] }}'s Profile</h1>
+<p>Age: {{ user['age'] }}</p>
+<p>Role: {{ user['role'] }}</p>
+<p>Email: {{ user['email'] or "N/A" }}</p>
+<p>Bio: {{ user['bio'] or "N/A" }}</p>
+{% if user['profile_pic'] %}
+<img src="{{ url_for('static', filename='uploads/' + user['profile_pic']) }}" width="150">
+{% endif %}
+<p><a href="{{ url_for('users.users_html') }}">Back to Users List</a></p>
+{% endblock %}

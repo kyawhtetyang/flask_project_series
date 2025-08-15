@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Create User{% endblock %}
+{% block content %}
+<h1>Create User</h1>
+<form method="POST" action="{{ url_for('users.create_user_form') }}" enctype="multipart/form-data">
+    Username: <input type="text" name="username" required><br/>
+    Age: <input type="number" name="age" required><br/>
+    Password: <input type="password" name="password" required><br/>
+    Email: <input type="email" name="email"><br/>
+    Bio: <textarea name="bio"></textarea><br/>
+    Profile Picture: <input type="file" name="profile_pic" accept="image/*"><br/><br/>
+    <button type="submit">Create</button>
+</form>
+<p><a href="{{ url_for('auth.login') }}">Login</a></p>
+<p><a href="{{ url_for('users.users_html') }}">Users List</a></p>
+{% endblock %}
