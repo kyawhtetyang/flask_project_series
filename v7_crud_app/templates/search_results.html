@@ -1,0 +1,21 @@
+# templates/search_results.html
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<h1>Search Results</h1>
+<form method="get" action="{{ url_for('users.search_users') }}">
+    <input type="text" name="q" value="{{ request.args.get('q','') }}" placeholder="Search username">
+    <button type="submit">Search</button>
+</form>
+<ul>
+{% for username, user in users.items() %}
+<li>
+    {{ username }} ({{ user['role'] }}) -
+    <a href="{{ url_for('users.profile', username=username) }}">Profile</a>
+</li>
+{% else %}
+<p>No users found.</p>
+{% endfor %}
+</ul>
+<p><a href="{{ url_for('users.users_html') }}">Back to Users</a></p>
+{% endblock %}
